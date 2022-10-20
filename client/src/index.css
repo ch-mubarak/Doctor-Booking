@@ -1,0 +1,31 @@
+/* common styling */
+input{
+    border-radius: 0 !important;
+    border:1px solid grey !important
+}
+
+.card {
+  box-shadow: 0 0 2px grey;
+}
+
+.card-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.normal-text {
+  font-size: 1rem;
+}
+
+
+/* authentication pages */
+.authentication {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.authentication-form {
+  width: 400px;
+}

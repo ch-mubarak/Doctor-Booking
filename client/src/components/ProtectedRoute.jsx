@@ -37,10 +37,10 @@ function ProtectedRoute(props) {
     }
   };
   useEffect(() => {
-    if (!user) {
+    if (!user) {   
       getUser();
     }
-  }, []);
+  }, [user]);
   if (localStorage.getItem("token")) {
     return props.children;
   } else {

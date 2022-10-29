@@ -3,7 +3,7 @@ mongoose.connect(process.env.DATABASE_URL);
 
 const connection = mongoose.connection;
 
-connection.on("connected", () => console.log("mongodb is connected"));
+connection.once("open", () => console.log("mongodb is connected"));
 
 connection.on("error", (err) => {
   console.log("Error in Mongodb connection", err);

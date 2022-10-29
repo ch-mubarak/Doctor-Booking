@@ -3,7 +3,7 @@ import "./Layout.css";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import { useState } from "react";
 import { useSelector } from "react-redux";
-import { Avatar, Badge } from "antd";
+import { Badge } from "antd";
 
 function Layout({ children }) {
   const Navigate = useNavigate();
@@ -47,13 +47,13 @@ function Layout({ children }) {
     {
       id: 2,
       name: "Users",
-      path: "/users",
+      path: "/admin/users",
       icon: "ri-article-line",
     },
     {
       id: 3,
       name: "Doctors",
-      path: "/doctors",
+      path: "/admin/doctors",
       icon: "ri-hospital-line",
     },
     {
@@ -64,12 +64,41 @@ function Layout({ children }) {
     },
   ];
 
-  const menuToBeRendered = user?.isAdmin ? adminMenu : userMenu;
+  const doctorMenu = [
+    {
+      id: 1,
+      name: "Home",
+      path: "/",
+      icon: "ri-home-line",
+    },
+    {
+      id: 2,
+      name: "Appointment",
+      path: "/appointment",
+      icon: "ri-file-list-line",
+    },
+    {
+      id: 3,
+      name: "Profile",
+      path: `/doctor/profile`,
+      icon: "ri-user-line",
+    },
+  ];
+
+  const menuToBeRendered = user?.isAdmin
+    ? adminMenu
+    : user?.isDoctor
+    ? doctorMenu
+    : userMenu;
+
+  const role = user?.isAdmin ? "Admin" : user?.isDoctor ? "Doctor" : "User";
   return (
     <div className="main">
       <div className="d-flex layout">
         <div className={collapsed ? "collapsed-sidebar" : "sidebar"}>
           {!collapsed && <h1 className="sidebar-title">Doctor Booking</h1>}
+          {!collapsed && <span className="sidebar-role">-{role}</span>}
+
           <div className="menu">
             {menuToBeRendered.map((menu) => {
               const isActive = location.pathname === menu.path;
@@ -113,7 +142,10 @@ function Layout({ children }) {
               )}
             </div>
             <div className="d-flex align-items-center px-3">
-              <Badge count={user?.unseenNotifications?.length}>
+              <Badge
+                count={user?.unseenNotifications?.length}
+                onClick={() => Navigate("/notifications")}
+              >
                 <i className="ri-notification-line menu-icons px-3"></i>
               </Badge>
               <Link to="/profile" className="anchor">

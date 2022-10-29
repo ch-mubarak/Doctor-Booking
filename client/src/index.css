@@ -20,6 +20,11 @@ label {
   font-size: 16px !important;
   color: black !important;
 }
+p{
+  color: rgba(0, 0, 0, 0.734);
+  margin-top: 0 ;
+  padding-top: 0;
+}
 .ant-form-item {
   margin: 10px 0 !important;
 }
@@ -67,6 +72,7 @@ label {
 .card {
   box-shadow: 0 0 2px rgb(189, 188, 188);
   border-radius: 0 !important;
+  cursor: pointer;
 }
 .primary-button {
   background-color: #005555 !important;

@@ -34,17 +34,25 @@
 
 .body {
   box-shadow: 0 0 0 2px grey;
-  height: auto;
+  height:85vh;
   border-radius: 5px;
   padding: 10px;
+  overflow: auto;
 }
 
 .sidebar-title {
   color: white;
-  padding: 5px;
   font-size: 1.5rem;
   margin-left: 10px;
-  font-weight: 800;
+  font-weight: bold;
+  margin-bottom: 0;
+}
+
+.sidebar-role{
+  color: rgba(255, 255, 255, 0.482);
+  font-size: 15px;
+  margin-left: 80px;
+  margin-top: -20px !important;
 }
 
 .page-title {
@@ -55,6 +63,7 @@
 .card-title{
     font-size: 20px;
 }
+
 
 .menu {
   margin-top: 74px;
@@ -89,4 +98,8 @@
   color: black;
   cursor: pointer;
   padding-left: 10px;
+}
+
+.action{
+  cursor: pointer;
 }

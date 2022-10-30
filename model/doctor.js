@@ -51,4 +51,4 @@ const doctorSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-module.exports = mongoose.model("doctor", doctorSchema);
+module.exports = mongoose.model("Doctor", doctorSchema);

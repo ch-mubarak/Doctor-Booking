@@ -74,7 +74,7 @@ function Layout({ children }) {
     {
       id: 2,
       name: "Appointment",
-      path: "/appointment",
+      path: "/doctor/appointments",
       icon: "ri-file-list-line",
     },
     {

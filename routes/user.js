@@ -217,7 +217,7 @@ router.post("/book-doctor", authentication, async (req, res) => {
   }
 });
 
-router.post("/check-doctor-availability", async (req, res) => {
+router.post("/check-doctor-availability", authentication, async (req, res) => {
   try {
     const date = req.body.date;
     const currentDate = moment().format("DD-MM-YYYY");
@@ -249,6 +249,31 @@ router.post("/check-doctor-availability", async (req, res) => {
   } catch (error) {
     console.log(error);
     res.status(500).send({ message: "Error checking availability" });
+  }
+});
+
+router.get("/get-user-appointments", authentication, async (req, res) => {
+  try {
+    const userId = req.body.userId;
+    const appointments = await Appointment.find({ userId }).populate(
+      "doctorId"
+    );
+    if (!appointments)
+      return res
+        .status(200)
+        .send({ message: "No appointments", success: false });
+    res
+      .status(200)
+      .send({
+        message: "successfully fetched all appointments",
+        data: appointments,
+        success: true,
+      });
+  } catch (error) {
+    console.log(error);
+    res
+      .status(500)
+      .send({ message: "Error getting appointment list", success: false });
   }
 });
 

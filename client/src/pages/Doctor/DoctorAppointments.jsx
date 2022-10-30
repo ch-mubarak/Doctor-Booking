@@ -2,6 +2,7 @@ import { Table } from "antd";
 import axios from "axios";
 import React, { useState } from "react";
 import { useEffect } from "react";
+import { render } from "react-dom";
 import toast from "react-hot-toast";
 import { useDispatch } from "react-redux";
 import Layout from "../../components/Layout";
@@ -86,26 +87,45 @@ function DoctorAppointments() {
       },
     },
     {
+      title: "Status",
+      dataIndex: "status",
+      render: (text, record) => {
+        return (
+          <>
+            {record.status === "approved" && (
+              <span className="badge bg-success">Approved</span>
+            )}
+            {record.status === "pending" && (
+              <span className="badge bg-warning">Pending</span>
+            )}
+            {record.status === "rejected" && (
+              <span className="badge bg-danger">Rejected</span>
+            )}
+          </>
+        );
+      },
+    },
+    {
       title: "Action",
       dataIndex: "status",
-      render: (text, record) =>
-        record.status === "approved" ? (
-          <span
-            key={record._id}
-            className="badge bg-danger action"
-            onClick={() => changeAppointmentStatus(record, "rejected")}
-          >
-            Reject
-          </span>
-        ) : (
-          <span
-            key={record._id}
-            className="badge bg-success action"
-            onClick={() => changeAppointmentStatus(record, "approved")}
-          >
-            Approve
-          </span>
-        ),
+      render: (text, record) => {
+        return (
+          <div className="d-flex">
+            <span
+              className="action mx-3 anchor"
+              onClick={() => changeAppointmentStatus(record, "approved")}
+            >
+              Approve
+            </span>
+            <span
+              className="action anchor"
+              onClick={() => changeAppointmentStatus(record, "rejected")}
+            >
+              Reject
+            </span>
+          </div>
+        );
+      },
     },
   ];
   return (

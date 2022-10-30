@@ -110,20 +110,22 @@ function DoctorAppointments() {
       dataIndex: "status",
       render: (text, record) => {
         return (
-          <div className="d-flex">
-            <span
-              className="action mx-3 anchor"
-              onClick={() => changeAppointmentStatus(record, "approved")}
-            >
-              Approve
-            </span>
-            <span
-              className="action anchor"
-              onClick={() => changeAppointmentStatus(record, "rejected")}
-            >
-              Reject
-            </span>
-          </div>
+          record.status === "pending" && (
+            <div className="d-flex">
+              <span
+                className="action mx-3 anchor"
+                onClick={() => changeAppointmentStatus(record, "approved")}
+              >
+                Approve
+              </span>
+              <span
+                className="action anchor"
+                onClick={() => changeAppointmentStatus(record, "rejected")}
+              >
+                Reject
+              </span>
+            </div>
+          )
         );
       },
     },
